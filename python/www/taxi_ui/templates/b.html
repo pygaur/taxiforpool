@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block extrastatic %}
+<script type="text/javascript" src="/static/js/admin/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
+<script type="text/javascript" src="/static/js/admin/google_api.js"></script>
+{% endblock %}
+{% block centercontent %}
+<div id="tripform">
+<div class="col-sm-offset-2 col-sm-10" style="background:yellow">
+<form role="form" action="" method="POST">
+{% csrf_token %}
+
+
+  <div class="form-group">
+   <label for="from_point">From Place</label>{{ form.pickup_point }}{{form.pickup_point.errors}}
+
+    <label for="destination_point">Destination Point</label>{{ form.destination_point }}{{form.destination_point.errors}}
+  </div>
+  <div class="form-group">
+    <label for="landmark">Landmark</label>{{ form.landmark }}{{form.landmark.errors}}
+  </div>
+  <div class="form-group">
+    <label for="landmark">Date&Time</label>{{ form.timestamp }}{{form.timstamp.errors}}
+  </div>
+  <div class="form-group">
+    <label for="landmark">Email</label>{{ form.email }}{{form.email.errors}}
+    <label for="landmark">Mobile</label>{{ form.mobile }}{{form.mobile.errors}}
+  </div>
+  <div class="form-group">
+    <label for="landmark">Vehicle Options</label>{{ form.vehicle_options }}{{form.vehicle_options.errors}}
+  </div>
+<button type="submit" class="btn btn-success">
+                <i class="icon-circle-arrow-right icon-large"></i> Submit
+            </button>
+</form>
+
+
+</div>
+</div>
+{% endblock %}

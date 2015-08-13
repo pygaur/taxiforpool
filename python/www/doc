@@ -1,0 +1,8 @@
+Trip admin me change karna hai
+
+1 : admin/trip_managemet/trip hard coded hai need to make this dynamic
+
+
+vehicle options ke liye ek aisee form library
+
+vehicle_options = AwesomeDisplay(source_model=VehicleOptions, custom=True)

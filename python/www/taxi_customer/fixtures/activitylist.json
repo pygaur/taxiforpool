@@ -1,0 +1,9 @@
+[
+  {
+    "model": "taxi_customer.activity",
+    "pk": 1,
+    "fields": {
+      "name": "LOGIN"
+    }
+  }
+  ]

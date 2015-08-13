@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block extrastatic %}
+<script type="text/javascript">
+    function submit_likes() {
+        var id= this.id;
+        $.getJSON('/submitlike/'+id+"/",
+                function(data) {
+
+                });
+    }
+    function submit_interest() {
+        var id= {{ object.id }}
+                $.getJSON('{% url 'submit-interest' object.id %}',
+                function(data) {
+                    data = data
+                    alert(data.message);
+                 });
+    }
+    $(document).ready(function () {
+        $('.like').click(submit_likes);
+        $('#interest').click(submit_interest);
+    });
+</script>
+{% endblock %}
+{% block centercontent %}
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+    {{ context }}
+{{ interest_entries_count }} Peoples are interested into this trip
+    <br/>
+From Place : {{object.pickup_point}}<br/>
+Destination Place : {{object.destination_point}}<br/>
+Timestamp: {{object.timestamp}}<br/>
+Landmark: {{object.landmark}}<br/>
+<img width="40" height="40" class="like" id="{{ i.id }}" src="{{ STATIC_URL }}img/social/thumb_up.jpg"/>
+<img width="40" height="40" class="unlike" id="{{ i.id }}" src="{{ STATIC_URL }}img/social/thumb_down.jpg"/>
+<!--
+    <div class="fb-like" data-href="#" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+<a href="https://twitter.com/share" class="twitter-share-button" data-url="#" data-via="taxiforpool" data-size="large" data-related="taxiforpool" data-hashtags="taxiforpool">Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+-->
+
+<button id="interest" class="sample btn custom large m" data-p="5"  data-l="40" data-s="60" data-h="195">I am intrested</button>
+{% endblock %}

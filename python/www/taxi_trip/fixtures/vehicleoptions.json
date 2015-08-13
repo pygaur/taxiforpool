@@ -1,0 +1,23 @@
+[
+  {
+    "model": "taxi_trip.vehicleoptions",
+    "pk": 1,
+    "fields": {
+      "option_name": "I have my Own Vehicle."
+    }
+  },
+  {
+    "model": "taxi_trip.vehicleoptions",
+    "pk": 2,
+    "fields": {
+      "option_name": "I will look for option provided by sharing person"
+    }
+  },
+  {
+    "model": "taxi_trip.vehicleoptions",
+    "pk": 3,
+    "fields": {
+      "option_name": "You want us to arrange a cab for you."
+    }
+  }
+]

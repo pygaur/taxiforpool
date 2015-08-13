@@ -1,0 +1,137 @@
+{% extends "base.html" %}
+{% block extrastatic %}
+<script type="text/javascript" src="/static/js/admin/jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function () {
+$("#newslettersubmit").click(newsletter_submit)
+});
+
+function getCookie(name) {
+var cookieValue = null;
+if (document.cookie && document.cookie != '') {
+var cookies = document.cookie.split(';');
+for (var i = 0; i < cookies.length; i++) {
+var cookie = jQuery.trim(cookies[i]);
+// Does this cookie string begin with the name we want?
+if (cookie.substring(0, name.length + 1) == (name + '=')) {
+cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+break;
+}
+}
+}
+return cookieValue;
+}
+
+
+function newsletter_submit() {
+
+var inputEmail = $("#inputEmail").val();
+var inputName = $("#inputName").val();
+var inputTwitter = $("#inputTwitter").val();
+var csrftoken = getCookie('csrftoken');
+
+if (inputName == '')
+{
+alert("Please fill out Name field.")
+return
+}
+if (inputEmail == '')
+{
+alert("Please fill out Email field.")
+return
+}
+
+function validateEmail(email) {
+var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+return re.test(email);
+}
+
+if (validateEmail(inputEmail) == false )
+{
+alert("Please enter an email address")
+return
+}
+
+$.ajax({
+type: "POST",
+url: '/newsletter/',
+data: { 'name':inputName, 'email': inputEmail, 'twitter': inputTwitter, 'csrfmiddlewaretoken':csrftoken },
+success: function(response){
+alert(response.message);
+}
+});
+return false;
+}
+</script>
+
+
+{% endblock %}
+
+{% block centercontent %}
+<!-- ==== SECTION DIVIDER6 ==== -->
+<section class="section-divider textdivider divider6">
+<div class="container">
+
+
+<p>taxiforpool@gmail.com</p>
+<hr>
+<p>+91 9717353657</p>
+<p><a class="icon icon-twitter" href="https://twitter.com/taxiforpool"></a> | <a class="icon icon-facebook" href="https://www.facebook.com/taxiforpool"></a></p>
+</div><!-- container -->
+</section><!-- section -->
+
+<div class="container" id="contact" name="contact">
+<div class="row">
+<br>
+<h1 class="centered">Thanks for visiting us.</h1>
+<hr>
+<div class="col-lg-4">
+<h3>Contact</h3>
+<p><span class="icon icon-home"></span> House No 52, sarai subar<br/> safipur unnao 209871<br/>
+<span class="icon icon-phone"></span> +91 9717353656<br/>
+<span class="icon icon-mobile"></span> +91 9555403188 <br/>
+<span class="icon icon-envelop"></span> <a href="#">support@taxiforpool.com</a> <br/>
+<span class="icon icon-twitter"></span> <a href="#"> @taxiforpool </a> <br/>
+<span class="icon icon-facebook"></span> <a href="#"> Taxiforpool </a> <br/>
+</p>
+    <h3>Support Us</h3>
+<p>Giving people the ability to easily and efficiently share a taxi when they are both going
+to the same direction.</p>
+
+</div><!-- col -->
+
+<div class="col-lg-4">
+<h3>Newsletter</h3>
+<p>Register to our newsletter and be updated with the latest information regarding our services, offers and much more.</p>
+<p>
+<form data-toggle="validator" role="form">
+<div class="form-group">
+<label for="inputName" class="control-label">Name</label><input type="text" class="form-control" id="inputName" placeholder="Cina Saffary" required>
+</div>
+<div class="form-group">
+<label for="inputTwitter" class="control-label">Twitter</label>
+<div class="input-group">
+<span class="input-group-addon">@</span>
+<input type="text" pattern="^([_A-z0-9]){3,}$" maxlength="20" class="form-control" id="inputTwitter" placeholder="1000hz">
+</div>
+<span class="help-block with-errors">Up to 20 letters, numbers and underscores</span>
+</div>
+<div class="form-group">
+<label for="inputEmail" class="control-label">Email</label>
+<input type="email" class="form-control" id="inputEmail" placeholder="Email" data-error="Email address is invalid" required>
+<div class="help-block with-errors"></div>
+</div>
+
+<div class="form-group">
+<button type="submit" class="btn btn-primary" id="newslettersubmit">Submit</button>
+</div>
+</form>
+</p>
+</div><!-- col -->
+
+</div><!-- row -->
+
+</div><!-- container -->
+
+{% endblock %}

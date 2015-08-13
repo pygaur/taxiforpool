@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% block extrastatic %}
+    <style>
+    .leftsectiontriplsit {
+        padding-top: 100px;
+        float: left;
+        padding-left: 20px;
+        width: auto;
+
+    }
+    #listtrips {
+	margin-top: 50px;
+	min-height: 600px;
+    height : auto;
+        max-width: 1000px;
+
+}
+
+    </style>
+ <link rel="stylesheet" href="//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+ <script>
+$(function() {
+
+});
+</script>
+    <script type="text/javascript">
+ $(document).ready(function(){
+$( "#filterplace" ).autocomplete({
+ source: function( request, response ) {
+var matcher = new RegExp( "^" + $.ui.autocomplete.escapeRegex( request.term ), "i" );
+response($.getJSON('/triplistfilter/place/',
+function(data) {
+var data = data;
+$.grep( data, function( item ){
+return matcher.test( item );
+}) ;
+
+
+}));
+
+}
+});
+
+ });
+</script>
+
+{% endblock %}
+{% block centercontent %}
+    <div class="leftsectiontriplsit">
+
+<div class="col-sm-10">
+      <input class="form-field" type="text" id="filterplace" placeholder="Enter Place">
+    </div>
+    </div>
+<div class="triplists" id="listtrips">
+<table class="table table-striped" width="647">
+    <thead>
+    <tr>
+    <th>From Place</th>
+    <th>Destination</th>
+    <th>Timestamp</th>
+    </tr>
+    </thead>
+
+   {% for i in object_list  %}
+    <tbody>
+    <tr>
+    <td>
+    {{ i.pickup_point }}
+    </td>
+    <td>
+    {{ i.destination_point }}
+    </td>
+    <td>
+    {{ i.timestamp }}
+    </td>
+    <td>
+        <a href="{% url 'tripdetail' i.id %}">See Details</a>
+
+    </tr>
+
+    </tbody>
+   {% endfor %}
+    </table>
+
+</div>
+{% endblock %}

@@ -1,0 +1,37 @@
+[
+  {
+    "model": "taxi_customer.customerlevel",
+    "pk": 1,
+    "fields": {
+      "name": "One"
+    }
+  },
+  {
+    "model": "taxi_customer.customerlevel",
+    "pk": 2,
+    "fields": {
+      "name": "Two"
+    }
+  },
+  {
+    "model": "taxi_customer.customerlevel",
+    "pk": 3,
+    "fields": {
+      "name": "Three"
+    }
+  },
+  {
+    "model": "taxi_customer.customerlevel",
+    "pk": 4,
+    "fields": {
+      "name": "Four"
+    }
+  },
+  {
+    "model": "taxi_customer.customerlevel",
+    "pk": 5,
+    "fields": {
+      "name": "Five"
+    }
+  }
+]

@@ -1,0 +1,24 @@
+
+[
+  {
+    "model": "taxi_communicate.emailtriggername",
+    "pk": 1,
+    "fields": {
+      "trigger_name": "Signup_Successful"
+    }
+  },
+  {
+    "model": "taxi_communicate.emailtriggername",
+    "pk": 2,
+    "fields": {
+      "trigger_name": "Trip_Submitted"
+    }
+  },
+  {
+    "model": "taxi_communicate.emailtriggername",
+    "pk": 3,
+    "fields": {
+      "trigger_name": "Trip_Interest"
+    }
+  }
+]
